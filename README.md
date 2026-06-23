@@ -6,8 +6,6 @@ side-scan, plus DVL/IMU/depth/USBL dead-reckoning), fused through a single
 GTSAM/iSAM2 factor-graph back-end, validated in two physics simulators
 (**Gazebo Harmonic / Project DAVE** and **Stonefish**) on a **BlueROV2**.
 
-This repository is the implementation of
-[`AUV_MultiSLAM_ROS2_Cursor_Build_Spec.md`](AUV_MultiSLAM_ROS2_Cursor_Build_Spec.md).
 
 > **Build track:** This workspace targets the spec's **Track B** — ROS 2
 > **Humble** + Ubuntu **22.04** + **Gazebo Harmonic** (gz-sim 8) via `ros_gz`.
