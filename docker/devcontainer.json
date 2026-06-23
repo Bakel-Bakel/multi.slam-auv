@@ -1,0 +1,12 @@
+{
+  "name": "auv-slam-dev",
+  "build": { "dockerfile": "Dockerfile", "context": ".." },
+  "runArgs": [
+    "--net=host",
+    "--privileged",
+    "-e", "DISPLAY=${localEnv:DISPLAY}",
+    "-v", "/tmp/.X11-unix:/tmp/.X11-unix:rw"
+  ],
+  "workspaceFolder": "/opt/auv_slam_ws",
+  "remoteUser": "root"
+}

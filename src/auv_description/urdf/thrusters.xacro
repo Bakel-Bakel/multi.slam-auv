@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- Thruster link macro. The vectored 6-thruster (standard) and 8-thruster
+       (Heavy / vectored_6dof) layouts are instantiated from bluerov2.urdf.xacro.
+       Each thruster is a child link with a documented position; the allocation
+       matrix in auv_control maps body wrench -> per-thruster effort. -->
+
+  <xacro:macro name="thruster" params="id xyz rpy:='0 0 0'">
+    <link name="thruster${id}"><xacro:negligible_inertia m="0.05"/>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 ${pi/2} 0"/>
+        <geometry><cylinder radius="0.05" length="0.06"/></geometry>
+        <material name="auv_black"/>
+      </visual>
+    </link>
+    <joint name="thruster${id}_joint" type="fixed">
+      <parent link="base_link"/><child link="thruster${id}"/>
+      <origin xyz="${xyz}" rpy="${rpy}"/>
+    </joint>
+  </xacro:macro>
+
+  <!-- Standard vectored 6-thruster BlueROV2 layout.
+       T1-T4: horizontal, vectored at +/-45 deg. T5-T6: vertical. -->
+  <xacro:macro name="thrusters_vectored6" params="">
+    <xacro:thruster id="1" xyz=" 0.156  0.111 0.0" rpy="0 0 ${-pi/4}"/>
+    <xacro:thruster id="2" xyz=" 0.156 -0.111 0.0" rpy="0 0 ${pi/4}"/>
+    <xacro:thruster id="3" xyz="-0.156  0.111 0.0" rpy="0 0 ${pi/4}"/>
+    <xacro:thruster id="4" xyz="-0.156 -0.111 0.0" rpy="0 0 ${-pi/4}"/>
+    <xacro:thruster id="5" xyz=" 0.120  0.218 0.0" rpy="0 ${pi/2} 0"/>
+    <xacro:thruster id="6" xyz="-0.120  0.218 0.0" rpy="0 ${pi/2} 0"/>
+  </xacro:macro>
+
+  <!-- Heavy (vectored_6dof) 8-thruster layout: 4 vectored horizontal + 4 vertical. -->
+  <xacro:macro name="thrusters_vectored8" params="">
+    <xacro:thruster id="1" xyz=" 0.156  0.111 0.0" rpy="0 0 ${-pi/4}"/>
+    <xacro:thruster id="2" xyz=" 0.156 -0.111 0.0" rpy="0 0 ${pi/4}"/>
+    <xacro:thruster id="3" xyz="-0.156  0.111 0.0" rpy="0 0 ${pi/4}"/>
+    <xacro:thruster id="4" xyz="-0.156 -0.111 0.0" rpy="0 0 ${-pi/4}"/>
+    <xacro:thruster id="5" xyz=" 0.120  0.218 0.085" rpy="0 ${pi/2} 0"/>
+    <xacro:thruster id="6" xyz=" 0.120 -0.218 0.085" rpy="0 ${pi/2} 0"/>
+    <xacro:thruster id="7" xyz="-0.120  0.218 0.085" rpy="0 ${pi/2} 0"/>
+    <xacro:thruster id="8" xyz="-0.120 -0.218 0.085" rpy="0 ${pi/2} 0"/>
+  </xacro:macro>
+</robot>

@@ -1,0 +1,22 @@
+1782226232.3721063 [INFO] [launch]: All log files can be found below /home/lordcruise/Documents/Underwater-robotics-projects/multi-slam/.roslog/2026-06-23-16-50-32-366258-bakel-ROG-Strix-G18-188594
+1782226232.3730452 [INFO] [launch]: Default logging verbosity is set to INFO
+1782226235.9070530 [INFO] [gz sim-1]: process started with pid [188606]
+1782226235.9081314 [INFO] [robot_state_publisher-2]: process started with pid [188608]
+1782226235.9087276 [INFO] [parameter_bridge-3]: process started with pid [188611]
+1782226235.9091709 [INFO] [ground_truth_republisher-4]: process started with pid [188613]
+1782226235.9095533 [INFO] [depth_from_pressure-5]: process started with pid [188615]
+1782226235.9104021 [INFO] [sim_dvl-6]: process started with pid [188617]
+1782226235.9108179 [INFO] [sim_usbl-7]: process started with pid [188619]
+1782226235.9111769 [INFO] [thruster_allocator-8]: process started with pid [188621]
+1782226243.9031212 [INFO] [spawn_harmonic.py-9]: process started with pid [188883]
+1782226317.0829170 [WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+1782226317.1169319 [INFO] [parameter_bridge-3]: process has finished cleanly [pid 188611]
+1782226317.2330792 [ERROR] [gz sim-1]: process has died [pid 188606, exit code -2, cmd 'ruby /usr/bin/gz sim /home/lordcruise/Documents/Underwater-robotics-projects/multi-slam/install/auv_sim_gazebo/share/auv_sim_gazebo/worlds/ocean.sdf -s -r -v3 --force-version 8'].
+1782226317.2347109 [INFO] [launch]: process[gz sim-1] was required: shutting down launched system
+1782226318.1364179 [INFO] [robot_state_publisher-2]: process has finished cleanly [pid 188608]
+1782226318.2109821 [ERROR] [spawn_harmonic.py-9]: process has died [pid 188883, exit code -2, cmd '/home/lordcruise/Documents/Underwater-robotics-projects/multi-slam/install/auv_sim_gazebo/lib/auv_sim_gazebo/spawn_harmonic.py --ros-args --params-file /tmp/launch_params_nafrs6gq'].
+1782226318.2935419 [INFO] [sim_usbl-7]: process has finished cleanly [pid 188619]
+1782226318.2990091 [INFO] [depth_from_pressure-5]: process has finished cleanly [pid 188615]
+1782226318.3141177 [INFO] [sim_dvl-6]: process has finished cleanly [pid 188617]
+1782226318.3161156 [INFO] [ground_truth_republisher-4]: process has finished cleanly [pid 188613]
+1782226318.3186405 [INFO] [thruster_allocator-8]: process has finished cleanly [pid 188621]

@@ -1,0 +1,175 @@
+<?xml version="1.0"?>
+<!-- Stonefish scenario for the BlueROV2 (spec §7.2).
+     Stonefish computes hydrodynamics from actual body geometry, so this references a
+     PHYSICS-SIMPLIFIED mesh (separate from the visual mesh) — see auv_description/meshes.
+     Sensor names/frames are chosen so the Stonefish adapter (sim_stonefish.launch.py)
+     remaps them onto the EXACT interface-contract topics/frames used by Gazebo (M4).
+
+     NOTE: this scenario must be validated against the vendored Stonefish version
+     (scripts/build_stonefish.sh). Element names follow Stonefish's scenario schema;
+     confirm any version-specific attributes before relying on it. -->
+<scenario>
+  <environment>
+    <ned latitude="42.0" longitude="3.2"/>
+    <ocean enabled="true">
+      <water density="1025.0" jerlov="0.2"/>
+      <waves enabled="false"/>
+    </ocean>
+    <atmosphere>
+      <sun azimuth="120.0" elevation="50.0"/>
+    </atmosphere>
+  </environment>
+
+  <materials>
+    <material name="Aluminium" density="2710.0" restitution="0.7"/>
+    <material name="Neutral" density="1025.0" restitution="0.5"/>
+    <friction_table>
+      <friction material1="Aluminium" material2="Aluminium" static="0.5" dynamic="0.3"/>
+      <friction material1="Neutral" material2="Aluminium" static="0.5" dynamic="0.3"/>
+    </friction_table>
+  </materials>
+
+  <looks>
+    <look name="yellow" gray="0.2" roughness="0.4" color="0.95 0.78 0.05"/>
+    <look name="black" gray="0.1" roughness="0.6"/>
+    <look name="seabed" gray="0.5" roughness="0.9" color="0.6 0.5 0.35"/>
+  </looks>
+
+  <!-- Seafloor with relief for bathymetric SLAM (mirrors the Gazebo ocean world). -->
+  <static name="Seafloor" type="plane">
+    <material name="Aluminium"/>
+    <look name="seabed"/>
+    <world_transform xyz="0.0 0.0 20.0" rpy="0.0 0.0 0.0"/>
+  </static>
+
+  <robot name="bluerov2" fixed="false" self_collisions="false">
+    <base_link name="Vehicle" type="compound" physics="submerged">
+      <!-- Physics-simplified hull; swap for the real simplified mesh when available. -->
+      <external_part name="Hull" type="box">
+        <dimensions xyz="0.46 0.33 0.25"/>
+        <material name="Neutral"/>
+        <look name="yellow"/>
+        <mass value="11.5"/>
+        <cg xyz="0.0 0.0 0.01"/>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      </external_part>
+    </base_link>
+
+    <!-- ===== Sensors (names map to the contract in the adapter remap) ===== -->
+    <sensor name="imu" type="imu" rate="100.0">
+      <link name="Vehicle"/>
+      <origin xyz="0.0 0.0 -0.02" rpy="0.0 0.0 0.0"/>
+      <ros_publisher topic="/imu/data"/>
+    </sensor>
+
+    <sensor name="pressure" type="pressure" rate="20.0">
+      <link name="Vehicle"/>
+      <origin xyz="-0.1 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <ros_publisher topic="/pressure"/>
+    </sensor>
+
+    <sensor name="dvl" type="dvl" rate="10.0">
+      <link name="Vehicle"/>
+      <origin xyz="-0.05 0.0 0.10" rpy="0.0 0.0 0.0"/>
+      <specs beam_angle="30.0"/>
+      <range velocity="9.0 9.0 9.0" altitude_min="0.3" altitude_max="60.0"/>
+      <ros_publisher topic="/dvl_raw"/>
+    </sensor>
+
+    <sensor name="gps" type="gps" rate="1.0">
+      <link name="Vehicle"/>
+      <origin xyz="0.0 0.0 -0.12" rpy="0.0 0.0 0.0"/>
+      <ros_publisher topic="/gps"/>
+    </sensor>
+
+    <sensor name="usbl" type="usbl" rate="1.0">
+      <link name="Vehicle"/>
+      <origin xyz="0.0 0.0 -0.12" rpy="0.0 0.0 0.0"/>
+      <ros_publisher topic="/usbl_raw"/>
+    </sensor>
+
+    <sensor name="cam_left" type="camera" rate="15.0">
+      <link name="Vehicle"/>
+      <origin xyz="0.20 0.06 0.0" rpy="0.0 0.0 0.0"/>
+      <specs resolution_x="640" resolution_y="480" horizontal_fov="86.0"/>
+      <ros_publisher topic="/cam/left"/>
+    </sensor>
+    <sensor name="cam_right" type="camera" rate="15.0">
+      <link name="Vehicle"/>
+      <origin xyz="0.20 -0.06 0.0" rpy="0.0 0.0 0.0"/>
+      <specs resolution_x="640" resolution_y="480" horizontal_fov="86.0"/>
+      <ros_publisher topic="/cam/right"/>
+    </sensor>
+
+    <!-- High-fidelity acoustic sensors — the reason to use Stonefish (spec §7.2). -->
+    <sensor name="fls" type="fls" rate="10.0">
+      <link name="Vehicle"/>
+      <origin xyz="0.18 0.0 0.02" rpy="0.0 0.0 0.0"/>
+      <specs fov_horizontal="120.0" fov_vertical="20.0" range_max="20.0"/>
+      <resolution range="0.05" angle="0.5"/>
+      <ros_publisher topic="/sonar/fls/image"/>
+    </sensor>
+    <sensor name="sss" type="sss" rate="10.0">
+      <link name="Vehicle"/>
+      <origin xyz="0.0 0.0 0.05" rpy="0.0 0.0 0.0"/>
+      <specs num_bins="500" horizontal_beam_width="0.5" vertical_beam_width="60.0"
+             tilt="45.0" range_max="40.0"/>
+      <ros_publisher topic="/sonar/sss/image"/>
+    </sensor>
+    <sensor name="msis" type="msis" rate="5.0">
+      <link name="Vehicle"/>
+      <origin xyz="0.16 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <specs step="1.0" range_min="0.5" range_max="20.0"
+             horizontal_beam_width="2.0" vertical_beam_width="20.0"/>
+      <ros_publisher topic="/sonar/msis/image"/>
+    </sensor>
+    <sensor name="mbes" type="multibeam2" rate="10.0">
+      <link name="Vehicle"/>
+      <origin xyz="0.05 0.0 0.12" rpy="0.0 0.0 0.0"/>
+      <specs fov_horizontal="120.0" steps="256" range_max="50.0"/>
+      <ros_publisher topic="/sonar/mbes/points"/>
+    </sensor>
+
+    <!-- 6-thruster vectored config; setpoints subscribed from the contract. -->
+    <actuator name="thruster1" type="thruster">
+      <link name="Vehicle"/><origin xyz="0.156 0.111 0.0" rpy="0.0 0.0 -0.785"/>
+      <specs thrust_coeff="0.02" torque_coeff="0.001" max_setpoint="50.0"/>
+      <propeller diameter="0.076" right="true"/>
+      <ros_subscriber topic="/bluerov2/thruster1"/>
+    </actuator>
+    <actuator name="thruster2" type="thruster">
+      <link name="Vehicle"/><origin xyz="0.156 -0.111 0.0" rpy="0.0 0.0 0.785"/>
+      <specs thrust_coeff="0.02" torque_coeff="0.001" max_setpoint="50.0"/>
+      <propeller diameter="0.076" right="false"/>
+      <ros_subscriber topic="/bluerov2/thruster2"/>
+    </actuator>
+    <actuator name="thruster3" type="thruster">
+      <link name="Vehicle"/><origin xyz="-0.156 0.111 0.0" rpy="0.0 0.0 0.785"/>
+      <specs thrust_coeff="0.02" torque_coeff="0.001" max_setpoint="50.0"/>
+      <propeller diameter="0.076" right="false"/>
+      <ros_subscriber topic="/bluerov2/thruster3"/>
+    </actuator>
+    <actuator name="thruster4" type="thruster">
+      <link name="Vehicle"/><origin xyz="-0.156 -0.111 0.0" rpy="0.0 0.0 -0.785"/>
+      <specs thrust_coeff="0.02" torque_coeff="0.001" max_setpoint="50.0"/>
+      <propeller diameter="0.076" right="true"/>
+      <ros_subscriber topic="/bluerov2/thruster4"/>
+    </actuator>
+    <actuator name="thruster5" type="thruster">
+      <link name="Vehicle"/><origin xyz="0.120 0.218 0.0" rpy="0.0 1.571 0.0"/>
+      <specs thrust_coeff="0.02" torque_coeff="0.001" max_setpoint="50.0"/>
+      <propeller diameter="0.076" right="true"/>
+      <ros_subscriber topic="/bluerov2/thruster5"/>
+    </actuator>
+    <actuator name="thruster6" type="thruster">
+      <link name="Vehicle"/><origin xyz="-0.120 0.218 0.0" rpy="0.0 1.571 0.0"/>
+      <specs thrust_coeff="0.02" torque_coeff="0.001" max_setpoint="50.0"/>
+      <propeller diameter="0.076" right="false"/>
+      <ros_subscriber topic="/bluerov2/thruster6"/>
+    </actuator>
+
+    <world_transform xyz="0.0 0.0 1.0" rpy="0.0 0.0 0.0"/>
+    <!-- Ground-truth odometry (eval only). -->
+    <ros_publisher prefix="/ground_truth"/>
+  </robot>
+</scenario>

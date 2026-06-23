@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>auv_slam_core</name>
+  <version>0.1.0</version>
+  <description>
+    GTSAM/iSAM2 factor-graph integrator (spec §10.6) — the unifier. Fuses odometry,
+    depth, USBL priors, and visual/sonar loop closures into one global pose graph and
+    publishes /slam/pose, /slam/trajectory, map->odom, and SlamStatus.
+  </description>
+  <maintainer email="dev@example.com">AUV SLAM contributors</maintainer>
+  <license>Apache-2.0</license>
+
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>nav_msgs</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>tf2_ros</exec_depend>
+  <exec_depend>auv_interfaces</exec_depend>
+  <exec_depend>python3-numpy</exec_depend>
+  <!-- GTSAM Python (pip: gtsam==4.2) — pinned in docker/Dockerfile. -->
+
+  <test_depend>python3-pytest</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>

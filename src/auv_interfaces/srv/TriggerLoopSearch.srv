@@ -1,0 +1,6 @@
+# Ask place-recognition to run an explicit loop-closure search now.
+string modality    # "visual" | "acoustic" | "all"
+---
+bool   success
+uint32 candidates_found
+string message

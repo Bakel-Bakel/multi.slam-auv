@@ -1,0 +1,67 @@
+Panels:
+  - Class: rviz_common/Displays
+    Name: Displays
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Class: rviz_default_plugins/Grid
+      Name: Grid
+      Enabled: true
+      Plane: XY
+      Cell Size: 1
+    - Class: rviz_default_plugins/RobotModel
+      Name: RobotModel
+      Enabled: true
+      Description Topic:
+        Value: /robot_description
+        Durability Policy: Transient Local
+        Reliability Policy: Reliable
+    - Class: rviz_default_plugins/TF
+      Name: TF
+      Enabled: true
+      Show Names: true
+      Marker Scale: 0.5
+    - Class: rviz_default_plugins/Odometry
+      Name: EKF Odometry
+      Enabled: true
+      Topic:
+        Value: /odom
+        Reliability Policy: Reliable
+      Keep: 200
+    - Class: rviz_default_plugins/Path
+      Name: SLAM Trajectory
+      Enabled: true
+      Color: 25; 255; 0
+      Topic:
+        Value: /slam/trajectory
+        Durability Policy: Transient Local
+        Reliability Policy: Reliable
+    - Class: rviz_default_plugins/PointCloud2
+      Name: MBES Map Cloud
+      Enabled: true
+      Size (m): 0.05
+      Style: Points
+      Topic:
+        Value: /map/cloud
+        Reliability Policy: Best Effort
+    - Class: rviz_default_plugins/Map
+      Name: Bathymetry
+      Enabled: true
+      Topic:
+        Value: /map/bathymetry
+        Reliability Policy: Reliable
+  Global Options:
+    Fixed Frame: map
+    Background Color: 30; 40; 60
+  Tools:
+    - Class: rviz_default_plugins/MoveCamera
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Distance: 25
+      Name: Current View
+      Pitch: 0.6
+      Yaw: 0.9
+Window Geometry:
+  Height: 900
+  Width: 1500

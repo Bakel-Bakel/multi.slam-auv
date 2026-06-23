@@ -1,0 +1,11 @@
+See AGENTS.md in the repo root for the full agent operating playbook and guardrails.
+
+PROJECT: AUV multi-modal SLAM stack (ROS 2 Humble [Track B], Gazebo Harmonic, Stonefish, BlueROV2).
+BUILD ORDER: follow milestones M0..M11 in AUV_MultiSLAM_ROS2_Cursor_Build_Spec.md. One at a time.
+NEVER: invent ROS APIs/fields/plugins; add deps outside spec §16 without asking; mix ORB-SLAM3
+  vendored thirdparty with system versions; publish a TF edge from two nodes; let SLAM consume
+  ground truth; special-case a simulator inside SLAM code.
+ALWAYS: use_sim_time:=true; custom msgs only in auv_interfaces; colcon build + acceptance test
+  before moving on; pin versions; vendor upstream as submodules; document each package README;
+  validate with evo vs ground truth.
+CONVENTIONS: ENU world / FLU body in SLAM; convert NED/FRD at sensor boundary; depth z = -d.

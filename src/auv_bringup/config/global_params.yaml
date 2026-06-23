@@ -1,0 +1,5 @@
+# Aggregated global parameters (spec §13). Per-subsystem YAMLs live in each package's
+# config/; this file documents the project-wide defaults. Simulation-first: sim time on.
+/**:
+  ros__parameters:
+    use_sim_time: true

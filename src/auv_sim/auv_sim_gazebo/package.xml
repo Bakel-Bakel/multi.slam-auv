@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>auv_sim_gazebo</name>
+  <version>0.1.0</version>
+  <description>
+    Gazebo Harmonic (gz-sim 8) underwater world, robot spawn, and ros_gz_bridge
+    config (the Gazebo-side adapter) for the BlueROV2 (spec §7.1, M3).
+  </description>
+  <maintainer email="dev@example.com">AUV SLAM contributors</maintainer>
+  <license>Apache-2.0</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <exec_depend>ros_gz_sim</exec_depend>
+  <exec_depend>ros_gz_bridge</exec_depend>
+  <exec_depend>auv_description</exec_depend>
+  <exec_depend>auv_sim_common</exec_depend>
+  <exec_depend>auv_control</exec_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

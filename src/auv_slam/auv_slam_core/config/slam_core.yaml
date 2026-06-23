@@ -1,0 +1,10 @@
+slam_core:
+  ros__parameters:
+    keyframe_distance: 0.5        # m between keyframes
+    keyframe_dt: 1.0              # s max between keyframes
+    optimize_period: 0.5         # s between iSAM2 updates
+    modalities: ["visual", "mbes", "fls", "sss", "msis"]
+    use_usbl: true
+    use_depth: true
+    publish_tf: true
+    stamp_match_tol: 1.0         # s tolerance when associating constraints to keyframes

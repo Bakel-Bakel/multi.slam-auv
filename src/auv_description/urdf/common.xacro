@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- Shared materials and inertia helper macros. -->
+
+  <material name="auv_yellow"><color rgba="0.95 0.78 0.05 1.0"/></material>
+  <material name="auv_black"><color rgba="0.1 0.1 0.1 1.0"/></material>
+  <material name="auv_blue"><color rgba="0.1 0.3 0.8 1.0"/></material>
+  <material name="auv_grey"><color rgba="0.5 0.5 0.5 1.0"/></material>
+  <material name="sensor_red"><color rgba="0.8 0.1 0.1 1.0"/></material>
+
+  <!-- Solid box inertia about its center. -->
+  <xacro:macro name="box_inertia" params="m x y z">
+    <inertial>
+      <mass value="${m}"/>
+      <inertia ixx="${m*(y*y+z*z)/12.0}" ixy="0.0" ixz="0.0"
+               iyy="${m*(x*x+z*z)/12.0}" iyz="0.0"
+               izz="${m*(x*x+y*y)/12.0}"/>
+    </inertial>
+  </xacro:macro>
+
+  <!-- Solid cylinder inertia about its center, axis along z. -->
+  <xacro:macro name="cylinder_inertia" params="m r h">
+    <inertial>
+      <mass value="${m}"/>
+      <inertia ixx="${m*(3*r*r+h*h)/12.0}" ixy="0.0" ixz="0.0"
+               iyy="${m*(3*r*r+h*h)/12.0}" iyz="0.0"
+               izz="${m*r*r/2.0}"/>
+    </inertial>
+  </xacro:macro>
+
+  <!-- Tiny inertia for massless sensor links (keeps SDF/Gazebo happy). -->
+  <xacro:macro name="negligible_inertia" params="m:=0.001">
+    <inertial>
+      <mass value="${m}"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6"/>
+    </inertial>
+  </xacro:macro>
+</robot>

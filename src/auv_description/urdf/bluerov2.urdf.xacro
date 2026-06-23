@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!-- BlueROV2 — single source of truth (spec §8).
+     Generates: robot_state_publisher TF, Gazebo (URDF->SDF) spawn, and a reference
+     geometry for the Stonefish scenario. Per-simulator tags are isolated in
+     bluerov2.gazebo.xacro and only included when use_gazebo:=true. -->
+<robot name="bluerov2" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:arg name="namespace" default=""/>
+  <xacro:arg name="heavy" default="false"/>       <!-- 8-thruster vectored_6dof -->
+  <xacro:arg name="use_gazebo" default="false"/>  <!-- emit gz sensors + systems -->
+
+  <xacro:property name="heavy" value="$(arg heavy)"/>
+
+  <xacro:include filename="$(find auv_description)/urdf/common.xacro"/>
+  <xacro:include filename="$(find auv_description)/urdf/sensors.xacro"/>
+  <xacro:include filename="$(find auv_description)/urdf/thrusters.xacro"/>
+
+  <!-- ===================== Vehicle body (FLU) ===================== -->
+  <!-- BlueROV2 published figures: mass ~11.5 kg, near-neutral buoyancy. -->
+  <xacro:property name="mass" value="11.5"/>
+  <xacro:property name="hull_x" value="0.46"/>
+  <xacro:property name="hull_y" value="0.33"/>
+  <xacro:property name="hull_z" value="0.25"/>
+
+  <link name="base_link">
+    <xacro:box_inertia m="${mass}" x="${hull_x}" y="${hull_y}" z="${hull_z}"/>
+    <visual>
+      <geometry><box size="${hull_x} ${hull_y} ${hull_z}"/></geometry>
+      <material name="auv_yellow"/>
+    </visual>
+    <collision>
+      <geometry><box size="${hull_x} ${hull_y} ${hull_z}"/></geometry>
+    </collision>
+  </link>
+
+  <!-- Static FRD mirror of base_link for marine-convention consumers (spec §4).
+       FLU -> FRD is a 180 deg roll (y,z flip). -->
+  <link name="base_link_frd"><xacro:negligible_inertia/></link>
+  <joint name="base_link_frd_joint" type="fixed">
+    <parent link="base_link"/><child link="base_link_frd"/>
+    <origin xyz="0 0 0" rpy="${pi} 0 0"/>
+  </joint>
+
+  <!-- ===================== Sensors ===================== -->
+  <xacro:imu_link parent="base_link"/>
+  <xacro:pressure_link parent="base_link"/>
+  <xacro:dvl_link parent="base_link"/>
+  <xacro:usbl_link parent="base_link"/>
+  <xacro:camera_link name="camera_left"  parent="base_link" xyz="0.20  0.06 0.0"/>
+  <xacro:camera_link name="camera_right" parent="base_link" xyz="0.20 -0.06 0.0"/>
+  <xacro:fls_link parent="base_link"/>
+  <xacro:sss_link parent="base_link" side="port" xyz="0.0  0.17 -0.05" rpy="${pi/2 + 0.35} 0 0"/>
+  <xacro:sss_link parent="base_link" side="stbd" xyz="0.0 -0.17 -0.05" rpy="${-pi/2 - 0.35} 0 0"/>
+  <xacro:mbes_link parent="base_link"/>
+
+  <!-- ===================== Thrusters ===================== -->
+  <xacro:if value="${heavy}">
+    <xacro:thrusters_vectored8/>
+  </xacro:if>
+  <xacro:unless value="${heavy}">
+    <xacro:thrusters_vectored6/>
+  </xacro:unless>
+
+  <!-- ===================== Gazebo-only tags ===================== -->
+  <xacro:if value="$(arg use_gazebo)">
+    <xacro:include filename="$(find auv_description)/urdf/bluerov2.gazebo.xacro"/>
+  </xacro:if>
+</robot>

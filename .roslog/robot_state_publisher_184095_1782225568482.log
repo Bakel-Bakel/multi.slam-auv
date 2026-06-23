@@ -1,0 +1,28 @@
+[WARN] [1782225568.716034246] [kdl_parser]: The root link base_link has an inertia specified in the URDF, but KDL does not support a root link with an inertia.  As a workaround, you can add an extra dummy link to your URDF.
+[INFO] [1782225568.716621161] [robot_state_publisher]: got segment base_link
+[INFO] [1782225568.716800578] [robot_state_publisher]: got segment base_link_frd
+[INFO] [1782225568.716842424] [robot_state_publisher]: got segment camera_left_link
+[INFO] [1782225568.716869208] [robot_state_publisher]: got segment camera_left_optical_link
+[INFO] [1782225568.716900656] [robot_state_publisher]: got segment camera_right_link
+[INFO] [1782225568.716926770] [robot_state_publisher]: got segment camera_right_optical_link
+[INFO] [1782225568.716952489] [robot_state_publisher]: got segment dvl_link
+[INFO] [1782225568.716977286] [robot_state_publisher]: got segment fls_link
+[INFO] [1782225568.717000859] [robot_state_publisher]: got segment imu_link
+[INFO] [1782225568.717116499] [robot_state_publisher]: got segment mbes_link
+[INFO] [1782225568.717142462] [robot_state_publisher]: got segment pressure_link
+[INFO] [1782225568.717168061] [robot_state_publisher]: got segment sss_port_link
+[INFO] [1782225568.717192046] [robot_state_publisher]: got segment sss_stbd_link
+[INFO] [1782225568.717216030] [robot_state_publisher]: got segment thruster1
+[INFO] [1782225568.717239624] [robot_state_publisher]: got segment thruster1_prop
+[INFO] [1782225568.717265098] [robot_state_publisher]: got segment thruster2
+[INFO] [1782225568.717289806] [robot_state_publisher]: got segment thruster2_prop
+[INFO] [1782225568.717314941] [robot_state_publisher]: got segment thruster3
+[INFO] [1782225568.717338269] [robot_state_publisher]: got segment thruster3_prop
+[INFO] [1782225568.717362415] [robot_state_publisher]: got segment thruster4
+[INFO] [1782225568.717384920] [robot_state_publisher]: got segment thruster4_prop
+[INFO] [1782225568.717408420] [robot_state_publisher]: got segment thruster5
+[INFO] [1782225568.717432045] [robot_state_publisher]: got segment thruster5_prop
+[INFO] [1782225568.717454701] [robot_state_publisher]: got segment thruster6
+[INFO] [1782225568.717478436] [robot_state_publisher]: got segment thruster6_prop
+[INFO] [1782225568.717501264] [robot_state_publisher]: got segment usbl_link
+[INFO] [1782225657.382631329] [rclcpp]: signal_handler(SIGINT/SIGTERM)

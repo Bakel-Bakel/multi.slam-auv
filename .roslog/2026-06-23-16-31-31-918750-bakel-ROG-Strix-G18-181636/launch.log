@@ -1,0 +1,5 @@
+1782225091.9196532 [INFO] [launch]: All log files can be found below /home/lordcruise/Documents/Underwater-robotics-projects/multi-slam/.roslog/2026-06-23-16-31-31-918750-bakel-ROG-Strix-G18-181636
+1782225091.9197814 [INFO] [launch]: Default logging verbosity is set to INFO
+1782225092.0992103 [INFO] [robot_state_publisher-1]: process started with pid [181639]
+1782225208.2726412 [WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+1782225208.2802286 [INFO] [robot_state_publisher-1]: process has finished cleanly [pid 181639]

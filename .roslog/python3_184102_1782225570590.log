@@ -1,0 +1,1 @@
+[INFO] [1782225570.909962329] [ground_truth_republisher]: ground_truth_republisher: /ground_truth/odom -> /ground_truth/pose (frame gt_map); SLAM must never subscribe to this.

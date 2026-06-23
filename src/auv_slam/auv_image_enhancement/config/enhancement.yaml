@@ -1,0 +1,4 @@
+image_enhancer:
+  ros__parameters:
+    method: "clahe_wb"     # none | wb | clahe | clahe_wb | full (adds UDCP dehaze)
+    cameras: ["left", "right"]

@@ -1,0 +1,96 @@
+# ros_gz_bridge config — the Gazebo-side adapter (spec §7.1).
+# Maps every gz topic onto the interface-contract ROS topic with the right type.
+# If a gz topic name differs on your build, confirm with `gz topic -l` and edit here:
+# adjusting names is a CONFIG change, never a code change (spec §7.4).
+
+# --- clock / sim time ---
+- ros_topic_name: "/clock"
+  gz_topic_name: "/clock"
+  ros_type_name: "rosgraph_msgs/msg/Clock"
+  gz_type_name: "gz.msgs.Clock"
+  direction: GZ_TO_ROS
+
+# --- IMU / mag / pressure ---
+- ros_topic_name: "/imu/data"
+  gz_topic_name: "/imu/data"
+  ros_type_name: "sensor_msgs/msg/Imu"
+  gz_type_name: "gz.msgs.IMU"
+  direction: GZ_TO_ROS
+- ros_topic_name: "/magnetic"
+  gz_topic_name: "/magnetic"
+  ros_type_name: "sensor_msgs/msg/MagneticField"
+  gz_type_name: "gz.msgs.Magnetometer"
+  direction: GZ_TO_ROS
+- ros_topic_name: "/pressure"
+  gz_topic_name: "/pressure"
+  ros_type_name: "sensor_msgs/msg/FluidPressure"
+  gz_type_name: "gz.msgs.FluidPressure"
+  direction: GZ_TO_ROS
+
+# --- stereo cameras ---
+- ros_topic_name: "/cam/left/image_raw"
+  gz_topic_name: "/cam/left/image_raw"
+  ros_type_name: "sensor_msgs/msg/Image"
+  gz_type_name: "gz.msgs.Image"
+  direction: GZ_TO_ROS
+- ros_topic_name: "/cam/left/camera_info"
+  gz_topic_name: "/cam/left/camera_info"
+  ros_type_name: "sensor_msgs/msg/CameraInfo"
+  gz_type_name: "gz.msgs.CameraInfo"
+  direction: GZ_TO_ROS
+- ros_topic_name: "/cam/right/image_raw"
+  gz_topic_name: "/cam/right/image_raw"
+  ros_type_name: "sensor_msgs/msg/Image"
+  gz_type_name: "gz.msgs.Image"
+  direction: GZ_TO_ROS
+- ros_topic_name: "/cam/right/camera_info"
+  gz_topic_name: "/cam/right/camera_info"
+  ros_type_name: "sensor_msgs/msg/CameraInfo"
+  gz_type_name: "gz.msgs.CameraInfo"
+  direction: GZ_TO_ROS
+
+# --- MBES point cloud (gpu_lidar proxy; DAVE GPU multibeam replaces upstream) ---
+- ros_topic_name: "/sonar/mbes/points"
+  gz_topic_name: "/sonar/mbes/points/points"
+  ros_type_name: "sensor_msgs/msg/PointCloud2"
+  gz_type_name: "gz.msgs.PointCloudPacked"
+  direction: GZ_TO_ROS
+
+# --- ground truth (eval only) ---
+- ros_topic_name: "/ground_truth/odom"
+  gz_topic_name: "/model/bluerov2/odometry"
+  ros_type_name: "nav_msgs/msg/Odometry"
+  gz_type_name: "gz.msgs.Odometry"
+  direction: GZ_TO_ROS
+
+# --- thruster commands (ROS -> gz), one per thruster ---
+- ros_topic_name: "/bluerov2/thruster1"
+  gz_topic_name: "/bluerov2/thruster1"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+- ros_topic_name: "/bluerov2/thruster2"
+  gz_topic_name: "/bluerov2/thruster2"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+- ros_topic_name: "/bluerov2/thruster3"
+  gz_topic_name: "/bluerov2/thruster3"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+- ros_topic_name: "/bluerov2/thruster4"
+  gz_topic_name: "/bluerov2/thruster4"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+- ros_topic_name: "/bluerov2/thruster5"
+  gz_topic_name: "/bluerov2/thruster5"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+- ros_topic_name: "/bluerov2/thruster6"
+  gz_topic_name: "/bluerov2/thruster6"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ

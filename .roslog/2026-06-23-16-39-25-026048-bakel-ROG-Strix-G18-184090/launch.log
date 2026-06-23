@@ -1,0 +1,22 @@
+1782225565.0307040 [INFO] [launch]: All log files can be found below /home/lordcruise/Documents/Underwater-robotics-projects/multi-slam/.roslog/2026-06-23-16-39-25-026048-bakel-ROG-Strix-G18-184090
+1782225565.0316737 [INFO] [launch]: Default logging verbosity is set to INFO
+1782225568.4989996 [INFO] [gz sim-1]: process started with pid [184093]
+1782225568.5029492 [INFO] [robot_state_publisher-2]: process started with pid [184095]
+1782225568.5057082 [INFO] [create-3]: process started with pid [184098]
+1782225568.5115058 [INFO] [parameter_bridge-4]: process started with pid [184100]
+1782225568.5133564 [INFO] [ground_truth_republisher-5]: process started with pid [184102]
+1782225568.5146513 [INFO] [depth_from_pressure-6]: process started with pid [184104]
+1782225568.5164230 [INFO] [sim_dvl-7]: process started with pid [184106]
+1782225568.5171189 [INFO] [sim_usbl-8]: process started with pid [184108]
+1782225568.5176141 [INFO] [thruster_allocator-9]: process started with pid [184110]
+1782225657.3829865 [WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+1782225657.4098783 [INFO] [parameter_bridge-4]: process has finished cleanly [pid 184100]
+1782225658.4461880 [INFO] [robot_state_publisher-2]: process has finished cleanly [pid 184095]
+1782225658.6176076 [INFO] [thruster_allocator-9]: process has finished cleanly [pid 184110]
+1782225658.6229606 [INFO] [sim_usbl-8]: process has finished cleanly [pid 184108]
+1782225658.6254830 [INFO] [sim_dvl-7]: process has finished cleanly [pid 184106]
+1782225658.6313713 [INFO] [ground_truth_republisher-5]: process has finished cleanly [pid 184102]
+1782225658.6353672 [INFO] [depth_from_pressure-6]: process has finished cleanly [pid 184104]
+1782225659.1701548 [ERROR] [gz sim-1]: process has died [pid 184093, exit code -2, cmd 'ruby /usr/bin/gz sim /home/lordcruise/Documents/Underwater-robotics-projects/multi-slam/install/auv_sim_gazebo/share/auv_sim_gazebo/worlds/ocean.sdf -r -v3 --force-version 8'].
+1782225659.1719131 [INFO] [launch]: process[gz sim-1] was required: shutting down launched system
+1782225659.6464286 [ERROR] [create-3]: process has died [pid 184098, exit code 255, cmd '/opt/ros/humble/lib/ros_gz_sim/create -topic robot_description -name bluerov2 -z -1.0 -allow_renaming true --ros-args'].

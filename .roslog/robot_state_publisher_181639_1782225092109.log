@@ -1,0 +1,22 @@
+[WARN] [1782225092.160052871] [kdl_parser]: The root link base_link has an inertia specified in the URDF, but KDL does not support a root link with an inertia.  As a workaround, you can add an extra dummy link to your URDF.
+[INFO] [1782225092.160521142] [robot_state_publisher]: got segment base_link
+[INFO] [1782225092.160563784] [robot_state_publisher]: got segment base_link_frd
+[INFO] [1782225092.160570814] [robot_state_publisher]: got segment camera_left_link
+[INFO] [1782225092.160575399] [robot_state_publisher]: got segment camera_left_optical_link
+[INFO] [1782225092.160579942] [robot_state_publisher]: got segment camera_right_link
+[INFO] [1782225092.160583877] [robot_state_publisher]: got segment camera_right_optical_link
+[INFO] [1782225092.160588257] [robot_state_publisher]: got segment dvl_link
+[INFO] [1782225092.160592439] [robot_state_publisher]: got segment fls_link
+[INFO] [1782225092.160596540] [robot_state_publisher]: got segment imu_link
+[INFO] [1782225092.160600397] [robot_state_publisher]: got segment mbes_link
+[INFO] [1782225092.160604386] [robot_state_publisher]: got segment pressure_link
+[INFO] [1782225092.160608511] [robot_state_publisher]: got segment sss_port_link
+[INFO] [1782225092.160612323] [robot_state_publisher]: got segment sss_stbd_link
+[INFO] [1782225092.160616343] [robot_state_publisher]: got segment thruster1
+[INFO] [1782225092.160620386] [robot_state_publisher]: got segment thruster2
+[INFO] [1782225092.160624184] [robot_state_publisher]: got segment thruster3
+[INFO] [1782225092.160628270] [robot_state_publisher]: got segment thruster4
+[INFO] [1782225092.160632027] [robot_state_publisher]: got segment thruster5
+[INFO] [1782225092.160635905] [robot_state_publisher]: got segment thruster6
+[INFO] [1782225092.160639539] [robot_state_publisher]: got segment usbl_link
+[INFO] [1782225208.272638124] [rclcpp]: signal_handler(SIGINT/SIGTERM)

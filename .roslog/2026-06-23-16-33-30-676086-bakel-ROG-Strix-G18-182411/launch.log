@@ -1,0 +1,24 @@
+1782225210.6769590 [INFO] [launch]: All log files can be found below /home/lordcruise/Documents/Underwater-robotics-projects/multi-slam/.roslog/2026-06-23-16-33-30-676086-bakel-ROG-Strix-G18-182411
+1782225210.6771932 [INFO] [launch]: Default logging verbosity is set to INFO
+1782225211.4055851 [INFO] [ign gazebo-1]: process started with pid [182414]
+1782225211.4057331 [INFO] [robot_state_publisher-2]: process started with pid [182417]
+1782225211.4057891 [INFO] [create-3]: process started with pid [182419]
+1782225211.4058316 [INFO] [parameter_bridge-4]: process started with pid [182421]
+1782225211.4058704 [INFO] [ground_truth_republisher-5]: process started with pid [182423]
+1782225211.4059074 [INFO] [depth_from_pressure-6]: process started with pid [182425]
+1782225211.4059422 [INFO] [sim_dvl-7]: process started with pid [182427]
+1782225211.4059756 [INFO] [sim_usbl-8]: process started with pid [182429]
+1782225211.4060061 [INFO] [thruster_allocator-9]: process started with pid [182431]
+1782225543.8840978 [WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+1782225543.9160933 [INFO] [parameter_bridge-4]: process has finished cleanly [pid 182421]
+1782225544.9488480 [INFO] [robot_state_publisher-2]: process has finished cleanly [pid 182417]
+1782225545.0952153 [INFO] [sim_dvl-7]: process has finished cleanly [pid 182427]
+1782225545.1028221 [INFO] [sim_usbl-8]: process has finished cleanly [pid 182429]
+1782225545.1044061 [INFO] [depth_from_pressure-6]: process has finished cleanly [pid 182425]
+1782225545.1083686 [INFO] [thruster_allocator-9]: process has finished cleanly [pid 182431]
+1782225545.1114368 [INFO] [ground_truth_republisher-5]: process has finished cleanly [pid 182423]
+1782225547.5604205 [ERROR] [create-3]: process has died [pid 182419, exit code 255, cmd '/opt/ros/humble/lib/ros_gz_sim/create -topic robot_description -name bluerov2 -z -1.0 -allow_renaming true --ros-args'].
+1782225548.9173257 [ERROR] [ign gazebo-1]: process[ign gazebo-1] failed to terminate '5' seconds after receiving 'SIGINT', escalating to 'SIGTERM'
+1782225548.9229331 [INFO] [ign gazebo-1]: sending signal 'SIGTERM' to process[ign gazebo-1]
+1782225548.9251642 [ERROR] [ign gazebo-1]: process has died [pid 182414, exit code -15, cmd 'ruby /usr/bin/ign gazebo /home/lordcruise/Documents/Underwater-robotics-projects/multi-slam/install/auv_sim_gazebo/share/auv_sim_gazebo/worlds/ocean.sdf -r -v3 --force-version 6'].
+1782225548.9268601 [INFO] [launch]: process[ign gazebo-1] was required: shutting down launched system

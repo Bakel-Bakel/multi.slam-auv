@@ -1,0 +1,22 @@
+thruster_allocator:
+  ros__parameters:
+    # gz Thruster command topics are /<thruster_topic_prefix>/<name>.
+    thruster_topic_prefix: "bluerov2"
+    # Thruster names (gz <topic> values from bluerov2.gazebo.xacro).
+    thruster_names: ["thruster1", "thruster2", "thruster3",
+                     "thruster4", "thruster5", "thruster6"]
+    # Geometry (must match urdf/thrusters.xacro thrusters_vectored6).
+    # Flattened rows of [x, y, z, roll, pitch, yaw] (ROS 2 params forbid nested lists).
+    # Thrust acts along each thruster link's +x axis.
+    thruster_poses_flat: [
+       0.156,  0.111, 0.0, 0.0, 0.0,      -0.7853981,   # T1
+       0.156, -0.111, 0.0, 0.0, 0.0,       0.7853981,   # T2
+      -0.156,  0.111, 0.0, 0.0, 0.0,       0.7853981,   # T3
+      -0.156, -0.111, 0.0, 0.0, 0.0,      -0.7853981,   # T4
+       0.120,  0.218, 0.0, 0.0, 1.5707963, 0.0,         # T5 (vertical)
+      -0.120,  0.218, 0.0, 0.0, 1.5707963, 0.0]         # T6 (vertical)
+    # Proportional gains: desired body twist -> body wrench [Fx,Fy,Fz,Mx,My,Mz].
+    wrench_gains: [40.0, 40.0, 40.0, 8.0, 8.0, 12.0]
+    max_thrust: 40.0          # N, per-thruster saturation
+    timeout_sec: 1.0          # zero thrust if no /cmd_vel within this window
+    rate_hz: 50.0

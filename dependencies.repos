@@ -1,0 +1,49 @@
+# vcs import < dependencies.repos  (run inside src/third_party)
+#
+# Upstream repositories vendored under src/third_party/ (spec §16).
+# Pin commits before relying on them; `version` here tracks the branch a pin
+# should be cut from. Heavy/optional repos are commented until their milestone.
+repositories:
+  # --- Sonar message standard (M1) ---
+  marine_acoustic_msgs:
+    type: git
+    url: https://github.com/apl-ocean-engineering/marine_msgs.git
+    version: main
+
+  # --- High-fidelity marine simulator (M4) ---
+  stonefish:
+    type: git
+    url: https://github.com/patrykcieslak/stonefish.git
+    version: master
+  stonefish_ros2:
+    type: git
+    url: https://github.com/patrykcieslak/stonefish_ros2.git
+    version: master
+
+  # --- BlueROV2 references to adapt from (M2/M3, do not fork blindly) ---
+  bluerov2_cn:
+    type: git
+    url: https://github.com/CentraleNantesROV/bluerov2.git
+    version: main
+
+  # --- Visual SLAM (M7) — enable when building the visual front-end ---
+  # ros2_orb_slam3:
+  #   type: git
+  #   url: https://github.com/Mechazo11/ros2_orb_slam3.git
+  #   version: humble
+  # ORB_SLAM3:
+  #   type: git
+  #   url: https://github.com/UZ-SLAMLab/ORB_SLAM3.git
+  #   version: master
+
+  # --- VIO front-end (M7, optional) ---
+  # open_vins:
+  #   type: git
+  #   url: https://github.com/rpng/open_vins.git
+  #   version: master
+
+  # --- Bathymetric SLAM toolkits (M8, references) ---
+  # auvlib:
+  #   type: git
+  #   url: https://github.com/nilsbore/auvlib.git
+  #   version: master

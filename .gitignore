@@ -1,0 +1,39 @@
+# ROS 2 / colcon
+build/
+install/
+log/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+
+# C++ / CMake
+*.o
+*.so
+*.a
+CMakeCache.txt
+CMakeFiles/
+
+# Editor / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Data / large artifacts (keep these out of git; use git-lfs or external storage)
+*.bag
+*.db3
+*.mcap
+bags/
+*.pcd
+*.ply
+results/
+*.png.huge
+
+# Vendored upstream builds (submodules tracked separately)
+src/third_party/*/build/
+src/third_party/*/install/

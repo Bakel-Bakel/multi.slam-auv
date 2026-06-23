@@ -1,0 +1,48 @@
+name: build-and-test
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  colcon-build-test:
+    runs-on: ubuntu-22.04
+    container:
+      image: ros:humble-ros-base-jammy
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Gazebo Harmonic + ROS deps
+        shell: bash
+        run: |
+          apt-get update
+          apt-get install -y --no-install-recommends curl gnupg lsb-release python3-pip python3-colcon-common-extensions python3-rosdep
+          curl -sSL https://packages.osrfoundation.org/gazebo.gpg -o /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg
+          echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/pkgs-osrf-archive-keyring.gpg] http://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" > /etc/apt/sources.list.d/gazebo-stable.list
+          apt-get update
+          apt-get install -y --no-install-recommends gz-harmonic ros-humble-ros-gz ros-humble-robot-localization ros-humble-xacro ros-humble-rtabmap-ros ros-humble-tf2-ros ros-humble-cv-bridge ros-humble-pcl-ros ros-humble-launch-testing-ament-cmake || true
+          pip3 install "gtsam==4.2" "evo==1.28.0" "numpy<2" scipy
+
+      - name: rosdep
+        shell: bash
+        run: |
+          rosdep init || true
+          rosdep update
+          source /opt/ros/humble/setup.bash
+          rosdep install --from-paths src --ignore-src -y -r || true
+
+      - name: colcon build
+        shell: bash
+        run: |
+          source /opt/ros/humble/setup.bash
+          colcon build --event-handlers console_direct+ --cmake-args -DCMAKE_BUILD_TYPE=Release
+
+      - name: colcon test
+        shell: bash
+        run: |
+          source /opt/ros/humble/setup.bash
+          source install/setup.bash
+          colcon test --event-handlers console_direct+ --ctest-args tests --pytest-args -q
+          colcon test-result --verbose

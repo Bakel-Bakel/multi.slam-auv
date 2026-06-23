@@ -1,0 +1,11 @@
+# Drive the vehicle through a list of waypoints to collect SLAM data.
+geometry_msgs/PoseStamped[] waypoints
+float64 cruise_speed          # [m/s]
+float64 waypoint_tolerance    # [m]
+---
+bool    success
+float64 final_position_error  # [m]
+float64 path_length           # [m]
+---
+uint32  current_waypoint
+float64 distance_to_waypoint  # [m]

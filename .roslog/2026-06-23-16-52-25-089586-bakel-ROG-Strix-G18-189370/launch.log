@@ -1,0 +1,22 @@
+1782226345.0942147 [INFO] [launch]: All log files can be found below /home/lordcruise/Documents/Underwater-robotics-projects/multi-slam/.roslog/2026-06-23-16-52-25-089586-bakel-ROG-Strix-G18-189370
+1782226345.0949535 [INFO] [launch]: Default logging verbosity is set to INFO
+1782226348.5929747 [INFO] [gz sim-1]: process started with pid [189374]
+1782226348.5954762 [INFO] [robot_state_publisher-2]: process started with pid [189377]
+1782226348.5972209 [INFO] [parameter_bridge-3]: process started with pid [189379]
+1782226348.5992215 [INFO] [ground_truth_republisher-4]: process started with pid [189381]
+1782226348.6004009 [INFO] [depth_from_pressure-5]: process started with pid [189383]
+1782226348.6032207 [INFO] [sim_dvl-6]: process started with pid [189385]
+1782226348.6038320 [INFO] [sim_usbl-7]: process started with pid [189387]
+1782226348.6054103 [INFO] [thruster_allocator-8]: process started with pid [189389]
+1782226356.5741055 [INFO] [spawn_harmonic.py-9]: process started with pid [189652]
+1782226392.2643111 [WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+1782226392.3044903 [INFO] [parameter_bridge-3]: process has finished cleanly [pid 189379]
+1782226393.3224115 [INFO] [robot_state_publisher-2]: process has finished cleanly [pid 189377]
+1782226393.3977587 [ERROR] [spawn_harmonic.py-9]: process has died [pid 189652, exit code -2, cmd '/home/lordcruise/Documents/Underwater-robotics-projects/multi-slam/install/auv_sim_gazebo/lib/auv_sim_gazebo/spawn_harmonic.py --ros-args --params-file /tmp/launch_params_amse2p26'].
+1782226393.4911163 [INFO] [depth_from_pressure-5]: process has finished cleanly [pid 189383]
+1782226393.4929481 [INFO] [sim_dvl-6]: process has finished cleanly [pid 189385]
+1782226393.4940779 [INFO] [sim_usbl-7]: process has finished cleanly [pid 189387]
+1782226393.4953814 [INFO] [ground_truth_republisher-4]: process has finished cleanly [pid 189381]
+1782226393.5176418 [INFO] [thruster_allocator-8]: process has finished cleanly [pid 189389]
+1782226394.0056760 [ERROR] [gz sim-1]: process has died [pid 189374, exit code -2, cmd 'ruby /usr/bin/gz sim /home/lordcruise/Documents/Underwater-robotics-projects/multi-slam/install/auv_sim_gazebo/share/auv_sim_gazebo/worlds/ocean.sdf -r -v3 --force-version 8'].
+1782226394.0074599 [INFO] [launch]: process[gz sim-1] was required: shutting down launched system

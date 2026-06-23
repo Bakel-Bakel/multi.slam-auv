@@ -1,0 +1,6 @@
+# Request a map product to be written to disk.
+string path        # output directory or file path
+string format      # "pcd" | "ply" | "octomap" | "bathymetry" | "all"
+---
+bool   success
+string message     # path written or error description

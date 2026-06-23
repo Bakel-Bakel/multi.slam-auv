@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>auv_sim_stonefish</name>
+  <version>0.1.0</version>
+  <description>
+    Stonefish scenario + adapter for the BlueROV2 (spec §7.2, M4). High-fidelity
+    marine sim (FLS/SSS/MSIS/multibeam). Requires the vendored Stonefish library and
+    stonefish_ros2 (scripts/build_stonefish.sh); publishes into the same contract as
+    the Gazebo path.
+  </description>
+  <maintainer email="dev@example.com">AUV SLAM contributors</maintainer>
+  <license>Apache-2.0</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <exec_depend>auv_description</exec_depend>
+  <exec_depend>auv_sim_common</exec_depend>
+  <exec_depend>auv_control</exec_depend>
+  <!-- stonefish_ros2 is vendored under src/third_party (optional at build time). -->
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
