@@ -12,32 +12,7 @@ GTSAM/iSAM2 factor-graph back-end, validated in two physics simulators
 > The architecture is distro-agnostic; moving to Track A (Jazzy/24.04) is a
 > Docker base-image change, not a code change.
 
-## Architecture in one picture
-
-```
-SIM (Gazebo Harmonic | Stonefish)  ->  INTERFACE CONTRACT (stable topics/frames)
-        |                                        |
-        |  adapters in auv_sim_common normalize  v
-        |                              front-ends (constraint producers):
-        |                              - state estimation (EKF / GTSAM nav)
-        |                              - visual SLAM (ORB-SLAM3 / RTAB-Map)
-        |                              - imaging-sonar SLAM (FLS/MSIS, CFAR+ICP)
-        |                              - bathymetric SLAM (MBES submaps + GICP)
-        |                              - place recognition (visual + acoustic)
-        v                                        |
-   ground truth (eval only)                      v
-                                  auv_slam_core (GTSAM + iSAM2)  ->  /slam/pose,
-                                  /slam/trajectory, map->odom, SlamStatus
-                                                 |
-                                                 v
-                                  auv_mapping  +  auv_evaluation (evo ATE/RPE)
-```
-
-The design principle: **modular front-ends + one unified back-end**, mediated by
-a **stable interface contract** ([`src/auv_bringup/INTERFACE.md`](src/auv_bringup/INTERFACE.md)).
-Nothing in the SLAM layer knows which simulator is running.
-
-## Workspace layout
+## Architecture 
 
 | Package | Role |
 |---|---|
